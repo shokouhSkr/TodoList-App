@@ -1,28 +1,36 @@
 import React, { useState } from "react";
 
-const TodoForm = () => {
-  const [todo, setTodo] = useState("");
+const TodoForm = ({ addInputValueHandler }) => {
+  const [inputValue, setInputValue] = useState("");
 
   const inputValueHandler = (e) => {
-    console.log(e.target.value);
-    setTodo(e.target.value);
+    // console.log(e.target.value);
+    setInputValue(e.target.value);
   };
 
   const submitHanlder = (e) => {
     e.preventDefault();
+
+    if (!inputValue) {
+      alert("Enter todo!");
+      return;
+    }
+
+    addInputValueHandler(inputValue);
+    setInputValue("");
   };
 
   return (
-    <form onSubmit={submitHanlder} className="flex justify-between">
+    <form onSubmit={submitHanlder} className="mb-3 flex justify-between">
       <input
         type="text"
         onChange={inputValueHandler}
-        value={todo}
+        value={inputValue}
         className="rounded-xl bg-white p-2"
       />
       <button
         type="submit"
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-white pb-1 text-3xl font-semibold text-pink-400 drop-shadow-md active:bg-zinc-200"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-white pb-1 text-3xl font-semibold text-pink-400 drop-shadow-md transition-all duration-300 active:bg-zinc-200"
       >
         +
       </button>

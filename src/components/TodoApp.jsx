@@ -17,11 +17,7 @@ const TodoApp = () => {
   };
 
   const completeTodo = (id) => {
-    // console.log(id);
-
     const index = todos.findIndex((todo) => todo.id === id);
-    // console.log(index);
-
     const selectedTodo = { ...todos[index] };
     selectedTodo.isCompleted = !selectedTodo.isCompleted;
     const updatedTodos = [...todos];
@@ -29,9 +25,14 @@ const TodoApp = () => {
     setTodos(updatedTodos);
   };
 
+  const deleteTodo = (id) => {
+    const filteredTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(filteredTodos);
+  };
+
   return (
     <div className="container p-3 text-zinc-800">
-      <TodoList todos={todos} onComplete={completeTodo} />
+      <TodoList todos={todos} onComplete={completeTodo} onDelete={deleteTodo} />
       <TodoForm addInputValueHandler={addInputValueHandler} />
     </div>
   );

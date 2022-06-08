@@ -3,7 +3,7 @@ import React from "react";
 const Todo = ({ todo, completeHandler, deleteHandler, editHandler }) => {
   return (
     <div>
-      <div className="flex justify-between">
+      <div className="flex justify-between px-3 py-1">
         <div
           onClick={completeHandler}
           className={`mr-3 cursor-pointer ${

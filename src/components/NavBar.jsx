@@ -1,6 +1,13 @@
 import React from "react";
+import Select from "react-select";
 
-const NavBar = ({ unCompletedTodos, onSelect, status }) => {
+const selectOptions = [
+  { value: "All", label: "All" },
+  { value: "Completed", label: "Completed" },
+  { value: "Uncompleted", label: "Uncompleted" },
+];
+
+const NavBar = ({ unCompletedTodos, onChange, selectedOption }) => {
   return (
     <header className="mb-3 flex w-full justify-between bg-pink-400 p-4 font-semibold text-white">
       {!unCompletedTodos ? (
@@ -16,11 +23,12 @@ const NavBar = ({ unCompletedTodos, onSelect, status }) => {
         </>
       )}
 
-      <select onChange={onSelect} value={status} className="mb-3 text-slate-800">
-        <option value="All">All</option>
-        <option value="Completed">Completed</option>
-        <option value="UnCompleted">UnCompleted</option>
-      </select>
+      <Select
+        value={selectedOption}
+        onChange={onChange}
+        options={selectOptions}
+        className="text-slate-800"
+      />
     </header>
   );
 };
